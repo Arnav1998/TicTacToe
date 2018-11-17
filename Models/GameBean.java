@@ -37,16 +37,6 @@ public class GameBean {
 			
 		} 
 		
-		for (int r = 0; r < this.gameArray.length; r++) {
-			for (int c = 0; c < this.gameArray[r].length; c++) {
-				System.out.print(gameArray[r][c]+" ");
-			}
-			System.out.println();
-		}
-	
-		//return gameWinningStatus();
-			
-		
 	}
 	
 	private boolean isValidMove(int moveRow, int moveCol) {
@@ -90,9 +80,15 @@ public class GameBean {
 
 	public char getTurnInfo() {
 		if (moveCount%2==0) 
-			return 'O';
+			return 'X';
 		else
-			return'X';
+			return'O';
 	}
-	
+
+	public char getWinner() {
+		if (getTurnInfo() == 'X') 
+			return 'O';
+		else 
+			return 'X';
+	}
 }

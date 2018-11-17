@@ -19,7 +19,12 @@ public class PlayController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameBean game = (GameBean) request.getSession().getAttribute("game");
-		game.move(Integer.parseInt(request.getParameter("row")), Integer.parseInt(request.getParameter("col")));
+		if (!game.getGameWinningStatus())
+			game.move(Integer.parseInt(request.getParameter("row")), Integer.parseInt(request.getParameter("col")));
+		if (game.getGameWinningStatus())
+			request.setAttribute("gameOver", true);
+
+
 		request.getRequestDispatcher("GameController").forward(request, response);
 	}
 

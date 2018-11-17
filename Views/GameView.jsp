@@ -23,7 +23,7 @@
 			<div class="row">
       		<c:forEach begin="0" end="2" step="1"  varStatus="col">
       			<div class="col-lg-4 border border-white" style="width: 300px; height: 300px">
-      				<a href="PlayController" class = "btn btn-dark btn-block btn-lg" style="height : 100%; line-height: 300px;"> 
+      				<a href="PlayController?row=${row.index}&col=${col.index}" class = "btn btn-dark btn-block btn-lg" style="height : 100%; line-height: 300px;"> 
       					${game.gameArray[row.index][col.index]}
      			 	</a>
     			</div>
@@ -31,7 +31,14 @@
       		</div>
 		</c:forEach>
 
-		<h3 class="text-center">Player ${game.turnInfo}'s turn</h3>
+		<c:if test="${empty gameOver}">
+			<h3 class="text-center">Player ${game.turnInfo}'s turn</h3>
+		</c:if>
+		
+		<c:if test="${not empty gameOver}"> 
+			<h3 class="text-center">Player ${game.winner} won</h3>
+			<a href="NewGameController" class="btn btn-danger" style="text-align: center; display:block;">New Game</a>
+		</c:if>
 		
 	</div>
 
