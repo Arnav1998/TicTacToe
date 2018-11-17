@@ -15,7 +15,7 @@ public class GameBean {
 		
 		for (int r = 0; r < this.gameArray.length; r++) {
 			for (int c = 0; c < this.gameArray[r].length; c++) {
-				this.gameArray[r][c] = 'E';
+				this.gameArray[r][c] = '-';
 			}
 		}
 		
@@ -23,9 +23,9 @@ public class GameBean {
 		
 	}
 	
-	public boolean move(int moveRow, int moveCol) {
+	public void move(int moveRow, int moveCol) {
 		
-		if (validMove(moveRow, moveCol)) {
+		if (isValidMove(moveRow, moveCol)) {
 			
 			this.moveCount++;
 			
@@ -44,42 +44,55 @@ public class GameBean {
 			System.out.println();
 		}
 	
-		return gameWinningStatus();
+		//return gameWinningStatus();
 			
 		
 	}
 	
-	private boolean validMove(int moveRow, int moveCol) {
+	private boolean isValidMove(int moveRow, int moveCol) {
 		
-		if (this.gameArray[moveRow][moveCol]=='E') 
+		if (this.gameArray[moveRow][moveCol]=='-') 
 			return true;
 		else
 			return false;
 		
 	}
 	
-	private boolean gameWinningStatus() {
+	public boolean getGameWinningStatus() {
 		
-		if (gameArray[0][0] == gameArray[0][1] && gameArray[0][0] == gameArray[0][2] && gameArray[0][0] != 'E') {
+		if (gameArray[0][0] == gameArray[0][1] && gameArray[0][0] == gameArray[0][2] && gameArray[0][0] != '-') {
 			return true;
-		} else if (gameArray[1][0] == gameArray[1][1] && gameArray[1][0] == gameArray[1][2] && gameArray[1][0] != 'E') {
+		} else if (gameArray[1][0] == gameArray[1][1] && gameArray[1][0] == gameArray[1][2] && gameArray[1][0] != '-') {
 			return true;
-		} else if (gameArray[2][0] == gameArray[2][1] && gameArray[2][0] == gameArray[2][2] && gameArray[2][0] != 'E') {
+		} else if (gameArray[2][0] == gameArray[2][1] && gameArray[2][0] == gameArray[2][2] && gameArray[2][0] != '-') {
 			return true;
-		} else if (gameArray[0][0] == gameArray[1][0] && gameArray[0][0] == gameArray[2][0] && gameArray[0][0] != 'E') {
+		} else if (gameArray[0][0] == gameArray[1][0] && gameArray[0][0] == gameArray[2][0] && gameArray[0][0] != '-') {
 			return true;
-		} else if (gameArray[0][1] == gameArray[1][1] && gameArray[0][1] == gameArray[2][1] && gameArray[0][1] != 'E') {
+		} else if (gameArray[0][1] == gameArray[1][1] && gameArray[0][1] == gameArray[2][1] && gameArray[0][1] != '-') {
 			return true;
-		} else if (gameArray[0][2] == gameArray[1][2] && gameArray[0][2] == gameArray[2][2] && gameArray[0][2] != 'E') {
+		} else if (gameArray[0][2] == gameArray[1][2] && gameArray[0][2] == gameArray[2][2] && gameArray[0][2] != '-') {
 			return true;
-		} else if (gameArray[0][0] == gameArray[1][1] && gameArray[0][0] == gameArray[2][2] && gameArray[0][0] != 'E') {
+		} else if (gameArray[0][0] == gameArray[1][1] && gameArray[0][0] == gameArray[2][2] && gameArray[0][0] != '-') {
 			return true;
-		} else if (gameArray[0][2] == gameArray[1][1] && gameArray[0][2] == gameArray[2][0] && gameArray[0][2] != 'E') {
+		} else if (gameArray[0][2] == gameArray[1][1] && gameArray[0][2] == gameArray[2][0] && gameArray[0][2] != '-') {
 			return true;
 		} else {
 			return false;
 		}
 		
+	}
+	
+	public char[][] getGameArray() {
+		
+		return gameArray;
+		
+	}
+
+	public char getTurnInfo() {
+		if (moveCount%2==0) 
+			return 'O';
+		else
+			return'X';
 	}
 	
 }
